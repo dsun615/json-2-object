@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="json2object", # Replace with your own username
-    version="0.0.4",
+    version="0.0.5",
     author="Denna Sun",
     author_email="dennasun615@gmail.com",
-    description="This is a simple package that will parse json to your custom model.",
+    description="This is a simple package that deserializes json to your custom model include custom attributes and child objects.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/dsun615/json-2-object",

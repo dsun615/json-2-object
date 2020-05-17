@@ -1,4 +1,6 @@
-This is a simple package that will parse json to your custom model. This will allow you to access through the model's attributes. The parser can handle custom object attributes and child attributes.
+This is a simple package that deserializes json to your custom model include custom attributes and child objects. It can return a single model or a list of the models. This will allow you to access through the model's attributes. 
 
-For more details on how to use, please see https://github.com/dsun615/json-2-object/wiki
+The deserializer can read list of dictionaries, dictionary or json string.
+
+For more details on how to use, please visit https://github.com/dsun615/json-2-object/wiki
 
