@@ -46,18 +46,21 @@ def deserialize(data, model):
                 setattr(obj, k, v)
             
             elif isinstance(v, list): # Handles an attribute that is a list of a model
-                attr = getattr(obj, k) # Need to make the list have at least 1 item in the collection to be able to verify object type
-                result = deserialize(v, attr[0])
-                setattr(obj, k, result)
+                try:                    
+                    attr = getattr(obj, k) # The list needs to have at least 1 item in the collection to be able to verify object type
+                    result = deserialize(v, attr[0])
+                    setattr(obj, k, result)
+                except:
+                    pass
                 
             elif isinstance(v, dict):
-                for k1,v1 in v.items():
-                    try:                        
-                        attr = getattr(obj, k)
-                        result = deserialize(v, attr)
-                        setattr(obj, k, result)                      
-                    except:
-                        pass
+                try:                        
+                    attr = getattr(obj, k)
+                    result = deserialize(v, attr)
+                    setattr(obj, k, result)                      
+                except:
+                    pass
+
         return obj
 
     elif isinstance(data, str):
