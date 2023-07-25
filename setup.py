@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="json_to_model",
+    name="json-to-object",
     version="0.0.1",
     author="Original author: Denna Sun, Maintained by Vladimir Podolian",
     author_email="vladimir.podlyan64@gmail.com",
