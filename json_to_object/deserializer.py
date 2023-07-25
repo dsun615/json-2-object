@@ -3,7 +3,7 @@ import copy
 
 
 def deserialize(data, model):
-    '''
+    """
     Parameters
     ----------
     data : list of dictionaries of json model, dictionary or json string.
@@ -17,9 +17,7 @@ def deserialize(data, model):
     Returns
     -------
     Returns a single model of the passed in type or a list of models of the passed in type.
-
-    '''    
-    
+    """
     if data is None or (isinstance(data, str) and not data.strip()):
         raise Exception('The data passed in is either null or empty.')
     
@@ -37,7 +35,7 @@ def deserialize(data, model):
             models.append(results)
         return models
     
-    elif isinstance(data, dict): # single model as dictionary type
+    elif isinstance(data, dict):  # single model as dictionary type
         
         obj = copy.copy(model)
         
@@ -45,13 +43,13 @@ def deserialize(data, model):
             if not isinstance(v, dict) and not isinstance(v, list):
                 setattr(obj, k, v)
             
-            elif isinstance(v, list): # Handles an attribute that is a list of a model
+            elif isinstance(v, list):  # Handles an attribute that is a list of a model
                 try:                    
-                    attr = getattr(obj, k) # The list needs to have at least 1 item in the collection to be able to verify object type
+                    attr = getattr(obj, k)  # The list needs to have at least 1 item in the collection to be able to verify object type
                     result = deserialize(v, attr[0])
                     setattr(obj, k, result)
                 except:
-                    pass
+                    setattr(obj, k, v)
                 
             elif isinstance(v, dict):
                 try:                        
@@ -59,12 +57,12 @@ def deserialize(data, model):
                     result = deserialize(v, attr)
                     setattr(obj, k, result)                      
                 except:
-                    pass
+                    setattr(obj, k, v)
 
         return obj
 
     elif isinstance(data, str):
-        
+
         return deserialize(json.loads(data), model)
     
     else:
